@@ -12,13 +12,13 @@ MAINDIR = "."
 OUTDIR  = "."
 
 ## Enable Go modules for this project.
-MODULES    = true
+MODULE    = true
 ## Enable `go generate` for this project.
 GENERATE   = true
 ## Enable goreleaser for this project.
 GORELEASER = false
 ## Enable git-secret for this project.
-SECRETS    = false
+SECRETS    = true
 
 ## Custom Go linker flags:
 LDFLAGS = -X github.com/stevenxie/$(PKG_NAME)/main.Version=$(VERSION)
@@ -43,7 +43,7 @@ default: build-run
 ## Sets up this project on a new device.
 setup: hooks-setup
 	@if [ "$(SECRETS)" == true ]; then $(SECRETS_REVEAL_CM); fi
-	@if [ "$(MODULES)" == true ]; \
+	@if [ "$(MODULE)" == true ]; \
 	 then $(DL_CMD); \
 	 else $(GET_CMD); \
 	 fi
@@ -87,7 +87,7 @@ secrets-reveal:
 ## Variables: MODPATH (module source path)
 MODPATH =
 mod-init:
-	@if [ "$(MODULES)" == true ]; then \
+	@if [ "$(MODULE)" == true ]; then \
 	   echo "Initializing Go module..." && \
 	   go mod init $(MODPATH); \
 	 fi

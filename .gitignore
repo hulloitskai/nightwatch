@@ -6,7 +6,7 @@ coverage.out
 /dist/
 /*nightwatch*
 !/*nightwatch*.*
-*nightwatch*.exe
+/*nightwatch*.exe
 
 ## Secrets:
 .env
